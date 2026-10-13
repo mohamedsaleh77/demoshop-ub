@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkout</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="/demoshop-ub/style.css">
+  <script src="/demoshop-ub/app.js"></script>
+  <script>DemoShop.requireSession("/demoshop-ub/checkout/");</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/demoshop-ub/"><span class="brand-mark" aria-hidden="true"></span>Demo Shop</a>
+      <nav class="session" data-session><a href="/demoshop-ub/login">Sign in</a></nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <h1>Checkout</h1>
+    <p class="lead">Review your order and pay. This is a practice checkout, so no card is charged.</p>
+    <div class="checkout">
+      <section class="card">
+        <h2>Order summary</h2>
+        <div class="summary">
+          <div class="line"><span>Steel water bottle 1.5 L</span><span>RM 59</span></div>
+          <div class="line"><span>Delivery</span><span>RM 8</span></div>
+          <div class="line total"><span>Total</span><span id="total">RM 67</span></div>
+        </div>
+      </section>
+      <section class="card">
+        <h2>Card details</h2>
+        <form class="form" id="pay-form" action="/demoshop-ub/thanks" method="get" novalidate>
+          <div class="field">
+            <label for="card-name">Name on card</label>
+            <input type="text" id="card-name" name="card-name" placeholder="Name as printed on the card" autocomplete="cc-name">
+          </div>
+          <div class="field">
+            <label for="card-number">Card number</label>
+            <input type="text" id="card-number" name="card-number" placeholder="0000 0000 0000 0000" inputmode="numeric" autocomplete="cc-number">
+          </div>
+          <div class="row">
+            <div class="field">
+              <label for="card-exp">Expiry</label>
+              <input type="text" id="card-exp" name="card-exp" placeholder="MM / YY" inputmode="numeric" autocomplete="cc-exp">
+            </div>
+            <div class="field">
+              <label for="card-cvc">CVC</label>
+              <input type="text" id="card-cvc" name="card-cvc" placeholder="123" inputmode="numeric" autocomplete="cc-csc">
+            </div>
+          </div>
+          <button type="submit" class="btn big" id="pay-now">Pay now</button>
+          <p class="hint">Any values are accepted. Nothing is stored or sent.</p>
+        </form>
+      </section>
+    </div>
+  </main>
+  <footer class="site-footer">Demo Shop is a practice store for a UtilizeBot tutorial. Nothing here is real and no payment is taken.</footer>
+  <script>
+    document.getElementById("pay-form").addEventListener("submit", function (ev) {
+      ev.preventDefault();
+      window.location.assign("/demoshop-ub/thanks/");
+    });
+  </script>
+</body>
+</html>

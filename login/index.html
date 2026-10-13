@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign in to Demo Shop</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="/demoshop-ub/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/demoshop-ub/"><span class="brand-mark" aria-hidden="true"></span>Demo Shop</a>
+      <nav class="session" data-session><a href="/demoshop-ub/login">Sign in</a></nav>
+    </div>
+  </header>
+  <main class="wrap">
+    <div class="narrow">
+      <h1>Sign in</h1>
+      <p class="lead">Use the demo account to continue to checkout.</p>
+      <form class="card form" id="login-form" method="post" action="/demoshop-ub/login" novalidate>
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" autocomplete="username" required placeholder="you@example.com">
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" name="password" id="password" autocomplete="current-password" required placeholder="Your password">
+        </div>
+        <p class="error" id="login-error" role="alert" aria-live="polite"></p>
+        <button type="submit" class="btn big">Sign in</button>
+      </form>
+    </div>
+  </main>
+  <footer class="site-footer">Demo Shop is a practice store for a UtilizeBot tutorial. Nothing here is real and no payment is taken.</footer>
+  <script src="/demoshop-ub/app.js"></script>
+  <script>
+    (function () {
+      var form = document.getElementById("login-form");
+      var err = document.getElementById("login-error");
+      var params = new URLSearchParams(window.location.search);
+      var next = DemoShop.safeNext(params.get("next"));
+      form.addEventListener("submit", function (ev) {
+        ev.preventDefault();
+        var email = document.getElementById("email").value.trim().toLowerCase();
+        var password = document.getElementById("password").value;
+        if (email === "demo@example.com" && password === "Demo-1234") {
+          DemoShop.setSession(email);
+          window.location.assign(next);
+        } else {
+          err.textContent = "Wrong email or password";
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
